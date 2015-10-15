@@ -2,4 +2,4 @@
 
 require 'chaoite'
 
-Chaoite.run(ARGV[0])
+Chaoite.run(ARGV)
