@@ -22,6 +22,8 @@ module Chaoite
 
     configs = JSON.parse(File.read(options[:config_file]))
 
+    puts "Starting up Chaoite"
+
     client = GraphiteAPI.new(:graphite => "#{options[:server]}:#{options[:port]}")
 
     client.every 10.seconds do |c|
