@@ -8,7 +8,7 @@ module Chaoite
     configs = JSON.parse(File.read(args))
 
     configs.each do |config|
-      Handler.send config["type"]
+      Handler.send config["type"], config
     end
 
   end
