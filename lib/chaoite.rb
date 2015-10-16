@@ -58,7 +58,6 @@ module Chaoite
         options[:port] = port
       end
 
-
       opts.on('-h', '--help', 'Displays Help') do
         puts opts
         exit

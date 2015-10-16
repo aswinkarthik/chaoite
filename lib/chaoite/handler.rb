@@ -1,4 +1,5 @@
 require 'net/http'
+require 'jsonpath'
 
 module Handler
   def self.http_state config
@@ -16,7 +17,7 @@ module Handler
     key = config["key"]
     value = begin
       res = Net::HTTP.get_response(URI(config["check"]))
-      res.body
+      parse(res.body, config)
     rescue
       nil
     end
@@ -35,11 +36,27 @@ module Handler
     command = config["check"]
 
     value = begin
-      `#{command}`
+      parse(`#{command}`, config)
+
     rescue
       nil
     end
 
     return key => value
+  end
+
+  private
+  def self.parse(data, config)
+    parser = config["parser"] || "text"
+    self.send("parse_#{parser}", data, config)
+  end
+
+  def self.parse_text(data, config)
+    return data
+  end
+
+  def self.parse_json(data, config)
+    raise "jsonpath needs to be specified if using json parser" if(!config["jsonpath"])
+    return JsonPath.on(data, config["jsonpath"])[0]
   end
 end

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "health_check_example",
+    "type": "http",
+    "value": "state",
+    "check": "http://localhost:3001/",
+    "key":"chaoite.localservice_state"
+  },
+  {
+    "name": "some_json_field_values",
+    "type": "http",
+    "value": "metric",
+    "parser": "json",
+    "check": "http://localhost:3000/some_endpoint/?q=value",
+    "key":"chaoite.field_value",
+    "jsonpath": "$.somejsonpath[0]"
+  }
+]
