@@ -9,15 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Aswin"]
   spec.email         = ["aswinkarthik93@gmail.com"]
 
-  spec.summary       = ""
-  spec.description   = ""
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "A collector and reporter for Graphite"
+  spec.description   = "A monitoring data collector that can poll services over http or run shell commands and gather a variety of metrics. Works with JSON/XML based services too, with support for jsonpath/xpath."
+  spec.homepage      = "https://github.com/aswinkarthik93/chaoite"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec", "~> 3.3"
 end

@@ -20,6 +20,10 @@ module Chaoite
     parser = setup_parser(options)
     parser.parse!
 
+    if(!File.exists?(options[:config_file]))
+      puts "Config file #{options[:config_file]} does not exist. see --help for usage"
+      exit
+    end
     configs = JSON.parse(File.read(options[:config_file]))
 
     puts "Starting up Chaoite"
@@ -60,6 +64,11 @@ module Chaoite
 
       opts.on('-h', '--help', 'Displays Help') do
         puts opts
+        exit
+      end
+
+      opts.on('-v', '--version', 'Displays version string') do
+        puts Chaoite::VERSION
         exit
       end
     end
