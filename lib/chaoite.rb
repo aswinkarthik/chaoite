@@ -33,8 +33,12 @@ module Chaoite
     client.every 10.seconds do |c|
       configs.each do |config|
         metric = Handler.send("#{config["type"]}_#{config["value"]}", config)
-        puts "Sending metric #{metric}"
-        c.metrics(metric)
+        if(metric) then
+          puts "Sending metric #{metric}"
+          c.metrics(metric)
+        else
+          puts "Empty metric for '#{config["name"]}', not sending."
+        end
       end
     end
 
