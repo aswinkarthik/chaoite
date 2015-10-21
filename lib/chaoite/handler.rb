@@ -1,5 +1,8 @@
 require 'net/http'
 require 'jsonpath'
+require 'chaoite/json_helper'
+
+include JsonHelper
 
 module Handler
   class << self
