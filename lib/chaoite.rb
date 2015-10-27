@@ -25,7 +25,8 @@ module Chaoite
       exit
     end
     configs = JSON.parse(File.read(options[:config_file]))
-
+    options[:server] = configs["graphite_host"] if configs["graphite_host"];
+    options[:port] = configs["graphite_port"] if configs["graphite_port"];
     puts "Starting up Chaoite"
 
     client = GraphiteAPI.new(:graphite => "#{options[:server]}:#{options[:port]}")
