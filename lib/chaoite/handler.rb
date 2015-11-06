@@ -64,7 +64,7 @@ module Handler
       key = resolve_json_path(data, config["key"])
       value = resolve_json_path(data, config["jsonvalue"])
       raise "json parser: key count should equal value count" if (key.length != value.length)
-      key.zip(value).to_h
+      Hash[key.zip(value)]
     end
 
   end
