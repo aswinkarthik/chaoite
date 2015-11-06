@@ -24,15 +24,15 @@ module Chaoite
       puts "Config file #{options[:config_file]} does not exist. see --help for usage"
       exit
     end
-    configs = JSON.parse(File.read(options[:config_file]))
-    options[:server] = configs["graphite_host"] if configs["graphite_host"];
-    options[:port] = configs["graphite_port"] if configs["graphite_port"];
+    configuration = JSON.parse(File.read(options[:config_file]))
+    options[:server] = configuration["graphite_host"] if configuration["graphite_host"];
+    options[:port] = configuration["graphite_port"] if configuration["graphite_port"];
     puts "Starting up Chaoite"
 
     client = GraphiteAPI.new(:graphite => "#{options[:server]}:#{options[:port]}")
 
     client.every 10.seconds do |c|
-      configs.each do |config|
+      configuration["configs"].each do |config|
         metric = Handler.send("#{config["type"]}_#{config["value"]}", config)
         if(metric) then
           puts "Sending metric #{metric}"
