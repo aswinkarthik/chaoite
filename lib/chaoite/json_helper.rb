@@ -7,7 +7,7 @@ module JsonHelper
       return template if paths.empty?
       combinations = paths.map { |path| {path[0] => JsonPath.on(json, path[1])} }.reduce(&:merge)
 
-      combinations = combinations.values[0].product(*combinations.values[1..-1]).map{ |x| combinations.keys.zip(x).to_h }
+      combinations = combinations.values[0].product(*combinations.values[1..-1]).map{ |x| Hash[combinations.keys.zip(x)] }
 
       combinations.map do |c|
         t = template+''
