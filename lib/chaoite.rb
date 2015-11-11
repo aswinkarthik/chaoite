@@ -14,6 +14,7 @@ module Chaoite
   }
 
   def self.run(args)
+    STDOUT.sync = true
 
     options = DEFAULT_OPTIONS
 
