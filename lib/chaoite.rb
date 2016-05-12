@@ -31,7 +31,7 @@ module Chaoite
 
     client = GraphiteAPI.new(:graphite => "#{options[:server]}:#{options[:port]}")
 
-    client.every 10.seconds do |c|
+    client.every 60.seconds do |c|
       configuration["configs"].each do |config|
         metric = Handler.send("#{config["type"]}_#{config["value"]}", config)
         if(metric) then

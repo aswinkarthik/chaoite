@@ -56,7 +56,7 @@ module Handler
 
     def parse_text(data, config)
       key = config["key"]
-      return key => data
+      return data
     end
 
     def parse_json(data, config)
